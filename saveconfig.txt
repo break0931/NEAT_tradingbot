@@ -1,0 +1,134 @@
+[NEAT]
+pop_size = 50                     
+fitness_criterion = max                   
+fitness_threshold = 1000.0                 
+reset_on_extinction = True               
+   
+
+[DefaultGenome]
+activation_default = sigmoid
+activation_mutate_rate = 0.2
+activation_options = sigmoid
+aggregation_default = sum
+aggregation_mutate_rate = 0.1
+bias_init_mean = 0.0
+bias_init_stdev = 1.0
+bias_init_type = gaussian
+bias_max_value = 1.0
+bias_min_value = -1.0
+bias_mutate_power = 0.1
+bias_mutate_rate = 0.2
+bias_replace_rate = 0.1
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient = 0.5
+conn_add_prob = 0.5
+conn_delete_prob = 0.3
+enabled_default = True
+enabled_mutate_rate = 0.1
+enabled_rate_to_false_add = 0.05
+enabled_rate_to_true_add = 0.05
+feed_forward = True
+initial_connection = unconnected
+node_add_prob = 0.3
+node_delete_prob = 0.2
+num_hidden = 10
+num_inputs = 7
+num_outputs = 3
+response_init_mean = 0.0
+response_init_stdev = 1.0
+response_init_type = gaussian
+response_max_value = 1.0
+response_min_value = -1.0
+response_mutate_power = 0.1
+response_mutate_rate = 0.2
+response_replace_rate = 0.1
+single_structural_mutation = False
+structural_mutation_surer = default
+weight_init_mean = 0.0
+weight_init_stdev = 1.0
+weight_init_type = gaussian
+weight_max_value = 1.0
+weight_min_value = -1.0
+weight_mutate_power = 0.1
+weight_mutate_rate = 0.2
+weight_replace_rate = 0.1
+
+[DefaultSpeciesSet]
+compatibility_threshold = 3.0            
+
+
+[DefaultStagnation]
+species_fitness_func = max                
+max_stagnation = 20                       
+
+[DefaultReproduction]
+elitism = 2                             
+                
+                   
+
+
+
+
+
+
+
+
+
+
+# Simulated environment
+# class TradingEnvironment:
+#     def __init__(self, data, initial_capital=10000, leverage=1, spread_rate=0):
+#         self.data = data
+#         self.index = 0
+#         self.holding = 0  # 0 = not holding, 1 = holding
+#         self.entry_price = None
+#         self.reward = 0
+#         self.capital = initial_capital
+#         self.leverage = leverage
+#         self.spread_rate = spread_rate
+#         self.positions = []
+#         self.logs = []
+#         self.num_positions = 0
+#         self.max = 5
+#     def get_state(self):
+#         if self.index >= len(self.data):
+#             return None
+
+#         trendline = self.data.iloc[self.index]['trendline']
+#         price_diff = self.data.iloc[self.index]['price_diff']
+#         volume = self.data.iloc[self.index]['tick_volume']
+#         close = self.data.iloc[self.index]['close']
+#         time_sin = self.data.iloc[self.index]['time_sin']
+#         time_cos = self.data.iloc[self.index]['time_cos']
+      
+#         return [trendline, price_diff, volume, close, time_sin, time_cos, self.holding]
+
+#     def step(self, action):
+#         """
+#         Actions:
+#         0 - Do nothing
+#         1 - Open trade
+#         2 - Close trade
+#         """
+#         reward = 0
+#         profit = 0
+       
+            
+#         if action == 1 and self.holding == 0 :  # Open trade
+#             self.holding = 1
+#             self.entry_price = self.data.iloc[self.index]['close']
+
+#         elif action == 2 and self.holding == 1:  # Close trade
+#             self.holding = 0
+#             raw_profit = ( self.entry_price - self.data.iloc[self.index]['close']  ) * self.leverage * (self.capital / self.entry_price)
+#             spread_cost = abs(raw_profit) * self.spread_rate
+#             net_profit = raw_profit - spread_cost
+#             profit = net_profit
+#             self.capital += profit  # Update capital with profit/loss
+#             reward = profit 
+
+#         elif action == 0:  # Do nothing
+#             reward = -(self.capital*0.01)  # Penalize doing nothing
+
+#         self.index += 1
+#         return self.get_state(), reward, profit

@@ -35,7 +35,7 @@ class tick_processor():
                  ):
 
         # if true, it will randomly try to open and close orders every few seconds. 
-        self.open_test_trades = False
+        self.open_test_trades = True
 
         self.last_open_time = datetime.now(timezone.utc)
         self.last_modification_time = datetime.now(timezone.utc)
@@ -127,7 +127,7 @@ class tick_processor():
 
 
 
-MT4_files_dir = 'C:/Users/Administrator/AppData/Roaming/MetaQuotes/Terminal/3B534B10135CFEDF8CD1AAB8BD994B13/MQL4/Files/'
+MT4_files_dir = 'C:/Users/ViewG/AppData/Roaming/MetaQuotes/Terminal/F762D69EEEA9B4430D7F17C82167C844/MQL5/Files/'
 
 processor = tick_processor(MT4_files_dir)
 
